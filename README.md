@@ -5,13 +5,9 @@ A simple Snake game implemented using Go + HTMX. The game is served via an HTTP 
 ## Features
 
 - The snake moves automatically and grows when it eats food.
-- The game speeds up as the snake grows.
 - The snake cannot move beyond the boundaries or hit itself.
 - Simple web interface using htmx for interactions.
 
-## Prerequisites
-
-- Go 1.18 or later
 
 ## Getting Started
 
