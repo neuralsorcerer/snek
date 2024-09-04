@@ -14,7 +14,7 @@ A simple Snake game implemented using Go + HTMX. The game is served via an HTTP 
 ### Clone the Repository
 
 ```sh
-git clone https://github.com/your-username/snake-game.git
+git clone https://github.com/neuralsorcerer/snake-game.git
 cd snake-game
 ```
 
