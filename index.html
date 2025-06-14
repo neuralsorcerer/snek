@@ -8,6 +8,7 @@
     <style>
       body {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100vh;
@@ -22,7 +23,7 @@
       .cell {
         width: 20px;
         height: 20px;
-        background-color: #333;
+        background-color: #222;
       }
       .snake {
         background-color: #0f0;
@@ -30,9 +31,37 @@
       .food {
         background-color: #f00;
       }
+      #score {
+        color: #fff;
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      button {
+        padding: 6px 12px;
+        font-size: 16px;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
+    <div
+      id="score"
+      hx-get="/score"
+      hx-trigger="load, every 500ms"
+      hx-swap="innerHTML"
+    >
+      Score: 0
+    </div>
+    <button
+      id="reset"
+      hx-post="/reset"
+      hx-target=".grid"
+      hx-swap="innerHTML"
+      style="margin-bottom: 10px"
+    >
+      Reset
+    </button>
     <div
       class="grid"
       hx-get="/move"
@@ -45,17 +74,24 @@
         let direction = "";
         switch (event.key) {
           case "ArrowUp":
+          case "w":
             direction = "up";
             break;
           case "ArrowDown":
+          case "s":
             direction = "down";
             break;
           case "ArrowLeft":
+          case "a":
             direction = "left";
             break;
           case "ArrowRight":
+          case "d":
             direction = "right";
             break;
+          case "r":
+            htmx.ajax("POST", "/reset", { target: ".grid" });
+            return;
         }
         if (direction) {
           htmx.ajax("GET", "/move?direction=" + direction, { target: ".grid" });

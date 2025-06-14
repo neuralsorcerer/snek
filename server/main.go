@@ -3,13 +3,16 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"snek/server/game"
-	"snek/server/handlers"
+
+	"github.com/neuralsorcerer/snek/server/game"
+	"github.com/neuralsorcerer/snek/server/handlers"
 )
 
 func main() {
     http.HandleFunc("/", handlers.IndexHandler)
-    http.HandleFunc("/move", handlers.MoveHandler)
+	http.HandleFunc("/move", handlers.MoveHandler)
+	http.HandleFunc("/score", handlers.ScoreHandler)
+	http.HandleFunc("/reset", handlers.ResetHandler)
 
     go game.StartGameLoop()
 
